@@ -1,4 +1,4 @@
-OPENAPI_AUTOGEN_DIR = 'stub'
+OPENAPI_STUB_DIR = 'stub'
 DB_HOST = <database hostname or ip address>
 DB_USER = <database user>
 DB_PASSWD = <database password>

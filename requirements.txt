@@ -1,2 +1,2 @@
--r autogen/requirements.txt
+-r stub/requirements.txt
 PyMySQL

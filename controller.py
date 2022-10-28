@@ -46,5 +46,15 @@ def get_stations(basin_id):
 
 
 def get_station_details(station_id):
-    return "Do something"
-
+    with db.cursor() as cs:
+        cs.execute("""
+            SELECT station_id, basin_id, ename, lat, lon
+            FROM station
+            WHERE station_id=%s
+            """, [station_id])
+        result = cs.fetchone()
+    if result:
+        station_id, basin_id, name, lat, lon = result
+        return models.StationFull(station_id, basin_id, name, lat, lon)
+    else:
+        abort(404)

@@ -74,6 +74,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/StationFull'
+  /basins/{basinId}/annualRainfalls/{year}:
+    parameters:
+    - name: basinId
+      in: path
+      required: true
+      schema:
+        type : integer
+    - name: year
+      in: path
+      required: true
+      schema:
+        type : integer
+    get:
+      summary: Returns the total rainfalls on the specified basin by id during the specified year
+      operationId: controller.get_total_rainfalls
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasinFull'
 
 components:
   schemas:

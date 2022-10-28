@@ -18,6 +18,7 @@ def get_basins():
         result = [models.BasinShort(basin_id, name) for basin_id, name in cs.fetchall()]
     return result
 
+
 def get_basin_details(basin_id):
     with db.cursor() as cs:
         cs.execute("""
@@ -58,3 +59,25 @@ def get_station_details(station_id):
         return models.StationFull(station_id, basin_id, name, lat, lon)
     else:
         abort(404)
+
+
+def get_total_rainfalls(basin_id, year):
+    with db.cursor() as cs:
+        cs.execute("""
+            SELECT SUM(daily_amount)
+            FROM(
+                SELECT b.ename, year, AVG(amount) as daily_amount
+                FROM rainfall r
+                INNER Join station s ON s.station_id = r.station_id
+                INNER Join basin b ON b.basin_id = s.basin_id
+                WHERE b.basin_id = %s AND year = %s
+                GROUP BY year, month, day
+            ) daily_rainfall
+            """, [basin_id, year])
+        rainfall = cs.fetchone()
+    
+    return {
+        "basin_id": basin_id,
+        "year": year,
+        "rainfall": rainfall[0]
+    } if rainfall else abort(404)

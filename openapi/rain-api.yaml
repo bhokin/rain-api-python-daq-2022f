@@ -136,3 +136,12 @@ components:
           type: number
         lon:
           type: number
+    Rainfalls:
+      type: object
+      properties:
+        basinId:
+          type: integer
+        year:
+          type: integer
+        rainfall:
+          type: number

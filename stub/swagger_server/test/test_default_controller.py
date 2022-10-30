@@ -59,6 +59,17 @@ class TestDefaultController(BaseTestCase):
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
+    def test_controller_get_total_rainfalls(self):
+        """Test case for controller_get_total_rainfalls
+
+        Returns the total rainfalls on the specified basin by id during the specified year
+        """
+        response = self.client.open(
+            '/basins/{basinId}/annualRainfalls/{year}'.format(basin_id=56, year=56),
+            method='GET')
+        self.assert200(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
+
 
 if __name__ == '__main__':
     import unittest

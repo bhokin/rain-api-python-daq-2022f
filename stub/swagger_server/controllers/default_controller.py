@@ -56,3 +56,18 @@ def controller_get_stations(basin_id):  # noqa: E501
     :rtype: List[StationShort]
     """
     return 'do some magic!'
+
+
+def controller_get_total_rainfalls(basin_id, year):  # noqa: E501
+    """Returns the total rainfalls on the specified basin by id during the specified year
+
+     # noqa: E501
+
+    :param basin_id: 
+    :type basin_id: int
+    :param year: 
+    :type year: int
+
+    :rtype: BasinFull
+    """
+    return 'do some magic!'

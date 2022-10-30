@@ -86,6 +86,34 @@ paths:
               schema:
                 $ref: '#/components/schemas/StationFull'
       x-openapi-router-controller: swagger_server.controllers.default_controller
+  /basins/{basinId}/annualRainfalls/{year}:
+    get:
+      summary: Returns the total rainfalls on the specified basin by id during the
+        specified year
+      operationId: controller_get_total_rainfalls
+      parameters:
+      - name: basinId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      - name: year
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasinFull'
+      x-openapi-router-controller: swagger_server.controllers.default_controller
 components:
   schemas:
     BasinShort:
@@ -141,4 +169,13 @@ components:
         lon: 5.962133916683182377482808078639209270477294921875
         lat: 1.46581298050294517310021547018550336360931396484375
         stationId: 0
+    Rainfalls:
+      type: object
+      properties:
+        basinId:
+          type: integer
+        year:
+          type: integer
+        rainfall:
+          type: float
 

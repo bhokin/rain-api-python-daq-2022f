@@ -76,8 +76,8 @@ def get_total_rainfalls(basin_id, year):
             """, [basin_id, year])
         rainfall = cs.fetchone()
     
-    return {
-        "basin_id": basin_id,
-        "year": year,
-        "rainfall": rainfall[0]
-    } if rainfall else abort(404)
+    return models.Rainfalls(
+        basin_id,
+        year, 
+        rainfall[0]
+    ) if rainfall else abort(404)
